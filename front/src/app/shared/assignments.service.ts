@@ -5,6 +5,7 @@ import { catchError, filter, map, tap } from 'rxjs/operators';
 import { Assignment } from '../assignments/assignment.model';
 import { LoggingService } from './logging.service';
 import { assignmentsGeneres } from './data';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class AssignmentsService {
 
   constructor(private loggingService:LoggingService, private http:HttpClient) { }
 
-  uri = "http://localhost:8010/api/assignments";
+  uri = environment.backendUri;
+  // uri = "http://localhost:8010/api/assignments";
   //uri = "https://backmadagascar2021.herokuapp.com/api/assignments"
 
   getAssignments():Observable<Assignment[]> {
