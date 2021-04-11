@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  backendUri: "http://localhost:8010/api/assignments"
+  backendUri: "https://assignmentappteam6.herokuapp.com/api/assignments"
 };
