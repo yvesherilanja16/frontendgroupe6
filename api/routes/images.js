@@ -1,4 +1,5 @@
 let Image = require("../model/image");
+const ImageService = require("../services/imageservice")
 
 function getImage(req, res) {
   let imageId = req.params.id;
@@ -39,21 +40,11 @@ function getImageAsFile(req,res){
 // data: base64 du fichier
 // type : mime type ex: image/jpg, image/png,..  
 function postImage(req, res) {
-  let image = new Image();
-  image.id = req.body.id;
-  image.nom = req.body.nom;
-  image.data = req.body.data;
-  image.type = req.body.type;
-
-  console.log("POST image reçu :");
-  console.log(image);
-
-  image.save((err) => {
-    if (err) {
-      res.send("cant post image ", err);
-    }
+  ImageService.saveImage(req.body).then((image)=>{
     res.json({ message: `${image.nom} saved!` });
-  });
+  }).catch(err=>
+    res.send("cant post image ", err)
+  );
 }
 /*
 // suppression d'une image (DELETE)

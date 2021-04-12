@@ -19,7 +19,7 @@ function getMatieres(req, res) {
   );
 }
 
-// Récupérer un matiere par son id (GET)
+// Récupérer une matiere par son id (GET)
 function getMatiere(req, res) {
   let matiereId = req.params.id;
 
@@ -31,7 +31,7 @@ function getMatiere(req, res) {
   });
 }
 
-// Ajout d'un matiere (POST)
+// Ajout d'une matiere (POST)
 function postMatiere(req, res) {
   let matiere = new Matiere();
   matiere.id = req.body.id;
@@ -49,7 +49,7 @@ function postMatiere(req, res) {
   });
 }
 
-// Update d'un matiere (PUT)
+// Update d'une matiere (PUT)
 function updateMatiere(req, res) {
   console.log("UPDATE recu matiere : ");
   console.log(req.body);
@@ -70,7 +70,7 @@ function updateMatiere(req, res) {
   );
 }
 
-// suppression d'un matiere (DELETE)
+// suppression d'une matiere (DELETE)
 function deleteMatiere(req, res) {
   Matiere.findByIdAndRemove(req.params.id, (err, matiere) => {
     if (err) {
