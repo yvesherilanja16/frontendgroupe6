@@ -1,0 +1,8 @@
+<p>imageupload works!</p>
+<div class="form-group">
+    <input type="file" name="imageProf" id="ImageProfInput" (change)="handleImageProfInput($event.target.files)">
+    <input type="file" name="imageMatiere" id="ImageMatiereInput" (change)="handleImageMatiereFileInput($event.target.files)">
+    <input type="text" name="nom" [(ngModel)]="nom"/>
+    <input type="text" name="prof" [(ngModel)]="prof"/>
+    <input type="submit" value="Televerser" (click)="uploadImage()">
+</div>

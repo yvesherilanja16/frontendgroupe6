@@ -15,7 +15,7 @@ export class AssignmentsService {
 
   constructor(private loggingService:LoggingService, private http:HttpClient) { }
 
-  uri = environment.backendUri;
+  uri = environment.backendUri+"/assignments";
   // uri = "http://localhost:8010/api/assignments";
   //uri = "https://backmadagascar2021.herokuapp.com/api/assignments"
 

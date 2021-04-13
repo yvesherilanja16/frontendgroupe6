@@ -26,6 +26,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { EditAssigmentComponent } from './assignments/edit-assigment/edit-assigment.component';
 import { AuthGuard } from './shared/auth.guard';
 import { HttpClientModule } from '@angular/common/http';
+import { ImageuploadComponent } from './imageupload/imageupload.component';
+import { MatieresComponent } from './matieres/matieres.component';
 
 const routes:Routes = [
   {
@@ -51,6 +53,10 @@ const routes:Routes = [
     path:"assignment/:id/edit",
     component:EditAssigmentComponent,
     canActivate : [AuthGuard]
+  },
+  {
+    path:"images/add",
+    component:ImageuploadComponent  
   }
 ]
 @NgModule({
@@ -61,7 +67,9 @@ const routes:Routes = [
     NonRenduDirective,
     AssignmentDetailComponent,
     AddAssignmentComponent,
-    EditAssigmentComponent
+    EditAssigmentComponent,
+    ImageuploadComponent,
+    MatieresComponent
   ],
   imports: [
     BrowserModule,
