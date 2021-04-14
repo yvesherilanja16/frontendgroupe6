@@ -14,8 +14,8 @@ let mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 //mongoose.set('debug', true);
 
-//const uri = "mongodb+srv://andy:master2021root@cluster0.4nfqp.mongodb.net/assignmentdb?retryWrites=true&w=majority";
-const uri = "mongodb+srv://yvesherilanja:HerilanjA4311@clusterangularnode.z1wlf.mongodb.net/assignments?retryWrites=true&w=majority";
+const uri = "mongodb+srv://andy:master2021root@cluster0.4nfqp.mongodb.net/assignmentdb?retryWrites=true&w=majority";
+//const uri = "mongodb+srv://yvesherilanja:HerilanjA4311@clusterangularnode.z1wlf.mongodb.net/assignments?retryWrites=true&w=majority";
 //const uri = "mongodb://localhost:27017/mbds";
 
 const options = {
