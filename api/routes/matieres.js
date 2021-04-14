@@ -77,29 +77,46 @@ function postMatiere(req, res) {
 function updateMatiere(req, res) {
   console.log("UPDATE recu matiere : ");
   console.log(req.body);
-  let imageProf = req.body.imageProf;
-  let imageMatiere = req.body.imageMatiere;
-  let ajouts = [ImageService.saveImage(imageProf), ImageService.saveImage(imageMatiere)];
-  Promise.all(ajouts).then(([imProf,imMatiere]) =>{
-  let updata = {...req.body};
-  if(imProf != null) updata.imageProf = imProf.id;
-  if(imMatiere!=null) updata.imageMatiere = imMatiere.id;
-  Matiere.findByIdAndUpdate(
-    req.body._id,
-    updata,
-    { new: true },
-    (err, matiere) => {
-      if (err) {
-        console.log(err);
-        res.send(err);
-      } else {
-        res.json({ message: "updated" });
-      }
+  Matiere.findOne({ id: matiereId }, (err, matiere) => {
+    if (err) {
+      res.send(err);
+    } else {
 
-      // console.log('updated ', matiere)
-    }
-  );
-  })
+
+      let imageProf = req.body.imageProf;
+      let imageMatiere = req.body.imageMatiere;
+      let ajouts = [ImageService.saveImage(imageProf), ImageService.saveImage(imageMatiere)];
+      Promise.all(ajouts).then(([imProf,imMatiere]) =>{
+        let updata = {...req.body};
+        if(imProf != null){
+          updata.imageProf = imProf.id;
+        } else {
+          updata.imageProf = matiere.imageProf;
+        }
+          
+        if(imMatiere!=null){
+          updata.imageMatiere = imMatiere.id;
+        } else {
+          updata.imageMatiere = matiere.imageMatiere;
+        }
+        Matiere.findByIdAndUpdate(
+          req.body._id,
+          updata,
+          { new: true },
+          (err, matiere) => {
+            if (err) {
+              console.log(err);
+              res.send(err);
+            } else {
+              res.json({ message: "updated" });
+            }
+            
+            // console.log('updated ', matiere)
+          }
+          );
+      });
+      }
+  });
 }
 
 // suppression d'une matiere (DELETE)

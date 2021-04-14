@@ -36,7 +36,7 @@ import { MatiereDetailComponent } from './matieres/matiere-detail/matiere-detail
 import { EditMatiereComponent } from './matieres/edit-matiere/edit-matiere.component';
 import { AddMatiereComponent } from './matieres/add-matiere/add-matiere.component';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import {MatMenuModule} from '@angular/material/menu';
 const routes:Routes = [
   {
     // indique que http://localhost:4200 sans rien ou avec un "/" à la fin
@@ -104,6 +104,7 @@ const routes:Routes = [
     BrowserAnimationsModule,
     FormsModule,
     DragDropModule,
+    MatMenuModule,
     FlexLayoutModule,
     MatProgressSpinnerModule,
     MatDialogModule,

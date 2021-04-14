@@ -1,9 +1,13 @@
 <div fxLayout="column" style="height:100%">
 <div fxFlex="initial">
   <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>menu</mat-icon>
     </button>
+    <mat-menu #menu="matMenu">
+      <a href="/" mat-menu-item>Assignements</a>
+      <a href="/matiere" mat-menu-item>Matières</a>
+    </mat-menu>
     <span>Assignements</span>
   </mat-toolbar>
 </div>
