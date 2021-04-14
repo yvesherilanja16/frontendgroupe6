@@ -11,6 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatListModule} from '@angular/material/list';
+import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
@@ -26,6 +27,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { EditAssigmentComponent } from './assignments/edit-assigment/edit-assigment.component';
 import { AuthGuard } from './shared/auth.guard';
 import { HttpClientModule } from '@angular/common/http';
+import { ImageuploadComponent } from './imageupload/imageupload.component';
+import { MatieresComponent } from './matieres/matieres.component';
+import { MatiereDetailComponent } from './matieres/matiere-detail/matiere-detail.component';
+import { EditMatiereComponent } from './matieres/edit-matiere/edit-matiere.component';
+import { AddMatiereComponent } from './matieres/add-matiere/add-matiere.component';
 
 const routes:Routes = [
   {
@@ -50,7 +56,27 @@ const routes:Routes = [
   {
     path:"assignment/:id/edit",
     component:EditAssigmentComponent,
-    canActivate : [AuthGuard]
+//    canActivate : [AuthGuard]
+  },
+  {
+    path:"images/add",
+    component:ImageuploadComponent  
+  },
+  {
+    path:"matiere",
+    component:MatieresComponent  
+  },
+  {
+    path:"matiere/add",
+    component:AddMatiereComponent
+  },
+  {
+    path:"matiere/:id",
+    component:MatiereDetailComponent
+  },
+  {
+    path:"matiere/:id/edit",
+    component:EditMatiereComponent
   }
 ]
 @NgModule({
@@ -61,12 +87,19 @@ const routes:Routes = [
     NonRenduDirective,
     AssignmentDetailComponent,
     AddAssignmentComponent,
-    EditAssigmentComponent
+    AddMatiereComponent,
+    EditAssigmentComponent,
+    MatiereDetailComponent,
+    MatieresComponent,
+    EditMatiereComponent,
+    ImageuploadComponent,
+    MatieresComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    MatSelectModule,
     MatButtonModule, MatDividerModule, MatIconModule,
     MatFormFieldModule, MatInputModule, MatDatepickerModule,
     MatNativeDateModule, MatListModule, MatCardModule, MatCheckboxModule,

@@ -1,0 +1,16 @@
+<div class="container">
+  <mat-card *ngIf="matiere">
+    <mat-card-title>{{matiere.nom}}</mat-card-title>
+    <mat-card-subtitle>{{matiere.prof}}</mat-card-subtitle>
+    <div id="bottom">
+      <nav>
+
+          <button [disabled]="!isAdmin()" mat-stroked-button color="primary" (click)="onClickEdit()">Modifier</button>
+
+      </nav>
+
+      <button mat-stroked-button color="warn" (click)="onClickDelete()">Supprimer</button>
+
+    </div>
+  </mat-card>
+</div>

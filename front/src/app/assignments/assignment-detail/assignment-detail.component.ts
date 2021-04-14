@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { AuthService } from 'src/app/shared/auth.service';
+import { ImageService } from 'src/app/shared/image.service';
 import { Assignment } from '../assignment.model';
 
 @Component({
@@ -15,6 +16,7 @@ export class AssignmentDetailComponent implements OnInit {
 
   constructor(
     private assignmentsService: AssignmentsService,
+    private imageService: ImageService,
     private route: ActivatedRoute,
     private router: Router,
     private authService:AuthService
@@ -32,6 +34,8 @@ export class AssignmentDetailComponent implements OnInit {
     console.log('Dans ngOnInit de details, id = ' + id);
     this.assignmentsService.getAssignment(id).subscribe((assignment) => {
       this.assignmentTransmis = assignment;
+      this.assignmentTransmis.matiere.imageProfLien = this.imageService.getImageUrl(this.assignmentTransmis.matiere.imageProf);
+      this.assignmentTransmis.matiere.imageMatiereLien = this.imageService.getImageUrl(this.assignmentTransmis.matiere.imageMatiere);
     });
   }
 
@@ -75,6 +79,7 @@ export class AssignmentDetailComponent implements OnInit {
   }
 
   isAdmin() {
-    return this.authService.admin;
+    //return this.authService.admin;
+    return true;
   }
 }
