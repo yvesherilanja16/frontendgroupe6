@@ -1,12 +1,18 @@
-<h1>
-  <nav>
-    <a routerLink="/home">{{title}}</a>
-  </nav>
-</h1>
-<mat-slide-toggle (click)="login()">Log me!</mat-slide-toggle>
-<button mat-stroked-button color="primary" (click)="peuplerBD()">PeuplerBD</button>
-<button mat-stroked-button color="primary" (click)="logout()">Logout</button>
-
-
-<!-- Indique qu'on affichera le composant qui correspond à l'URL courant -->
-<router-outlet></router-outlet>
+<div fxLayout="column" style="height:100%">
+<div fxFlex="initial">
+  <mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Assignements</span>
+  </mat-toolbar>
+</div>
+<div fxFlex >
+  <!--
+    
+    <mat-slide-toggle (click)="login()">Log me!</mat-slide-toggle>
+    <button mat-stroked-button color="primary" (click)="peuplerBD()">PeuplerBD</button>
+  -->
+  <router-outlet class="hidden"></router-outlet>
+</div>  
+</div>

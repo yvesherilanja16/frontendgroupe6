@@ -6,3 +6,6 @@
 .ajouterBtn {
   align-self: flex-end;
 }
+main{
+  height:100%;
+}

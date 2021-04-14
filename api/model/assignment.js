@@ -7,8 +7,14 @@ let AssignmentSchema = Schema({
     id: Number,
     dateDeRendu: Date,
     nom: String,
-    rendu: Boolean
-},{ collection: 'assignment' });
+    rendu: Boolean,
+    note: Number,
+    matiere: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'matiere'
+    },
+    auteur: String,
+},{ collection: 'assignment' , strict:'false'});
 
 AssignmentSchema.plugin(aggregatePaginate);
 

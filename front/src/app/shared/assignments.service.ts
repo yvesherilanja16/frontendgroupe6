@@ -5,6 +5,7 @@ import { catchError, filter, map, tap } from 'rxjs/operators';
 import { Assignment } from '../assignments/assignment.model';
 import { LoggingService } from './logging.service';
 import { assignmentsGeneres } from './data';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +15,18 @@ export class AssignmentsService {
 
   constructor(private loggingService:LoggingService, private http:HttpClient) { }
 
-  uri = "http://localhost:8010/api/assignments";
+  uri = environment.backendUri+"/assignments";
+  // uri = "http://localhost:8010/api/assignments";
   //uri = "https://backmadagascar2021.herokuapp.com/api/assignments"
 
   getAssignments():Observable<Assignment[]> {
     console.log("Dans le service de gestion des assignments...")
     //return of(this.assignments);
     return this.http.get<Assignment[]>(this.uri);
+  }
+
+  getAssignmentsRendusPagine(rendu:boolean, page:number, limit:number):Observable<any> {
+    return this.http.get<Assignment[]>(`${this.uri}?rendu=${rendu}&page=${page}&limit=${limit}`);
   }
 
   getAssignmentsPagine(page:number, limit:number):Observable<any> {
@@ -42,6 +48,7 @@ export class AssignmentsService {
     //return of(assignementCherche);
 
     return this.http.get<Assignment>(this.uri + "/" + id)
+    /*
     .pipe(
       // traitement 1
       map(a => {
@@ -50,14 +57,10 @@ export class AssignmentsService {
       }),
       tap(a => {
         console.log("TRACE DANS TAP : j'ai reçu " + a.nom);
-      }),
-      /*
-      filter(a => {
-        return (a.rendu)
       })
-      */
       catchError(this.handleError<any>('### catchError: getAssignments by id avec id=' + id))
-    );
+    )*/
+    ;
   }
 
   private handleError<T>(operation: any, result?: T) {
@@ -75,35 +78,17 @@ export class AssignmentsService {
 
   addAssignment(assignment:Assignment):Observable<any> {
     assignment.id = this.generateId();
-    //this.loggingService.log(assignment.nom, " a été ajouté");
-
-    /*this.assignments.push(assignment);
-
-
-    return of("Service: assignment ajouté !");*/
-
     return this.http.post(this.uri, assignment);
   }
 
   updateAssignment(assignment:Assignment):Observable<any> {
-    // besoin de ne rien faire puisque l'assignment passé en paramètre
-    // est déjà un élément du tableau
-
-    //let index = this.assignments.indexOf(assignment);
-
-    //console.log("updateAssignment l'assignment passé en param est à la position " + index + " du tableau");
+    console.log(assignment);
     this.loggingService.log(assignment.nom, " a été modifié");
-
     return this.http.put(this.uri, assignment);
   }
 
   deleteAssignment(assignment:Assignment):Observable<any> {
-    /*
-    let index = this.assignments.indexOf(assignment);
-
-    this.assignments.splice(index, 1);
-    */
-
+ 
 
     this.loggingService.log(assignment.nom, " a été supprimé");
 

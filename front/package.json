@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "build": "ng build --output-path ../api/frontdist",
+    "buildlocal": "ng build --output-path ../api/frontdist --configuration local",
+    "buildprod": "ng build --output-path ../api/frontdist --configuration production",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -12,10 +13,11 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~11.2.4",
-    "@angular/cdk": "^11.2.3",
+    "@angular/cdk": "^11.2.8",
     "@angular/common": "~11.2.4",
     "@angular/compiler": "~11.2.4",
     "@angular/core": "~11.2.4",
+    "@angular/flex-layout": "^11.0.0-beta.33",
     "@angular/forms": "~11.2.4",
     "@angular/material": "^11.2.3",
     "@angular/platform-browser": "~11.2.4",

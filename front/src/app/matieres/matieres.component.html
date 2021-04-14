@@ -1,0 +1,37 @@
+<main class="container">
+    <a routerLink="/matiere/add" class="ajouterBtn">
+      <button mat-flat-button color="accent">
+        Ajouter un matiere
+      </button>
+    </a>
+    <h1>Liste des matieres</h1>
+    <mat-divider></mat-divider>
+    <nav>
+      <button mat-raised-button color="primary" (click)="premierePage()">
+        Première
+      </button>
+      <button mat-raised-button color="primary" [disabled]="!hasPrevPage" (click)="pagePrecedente()">
+        Prev
+      </button>
+      <button mat-raised-button color="primary" [disabled]="!hasNextPage" (click)="pageSuivante()">
+        Suiv
+      </button>
+      <button mat-raised-button color="primary" (click)="dernierePage()">
+        Dernière
+      </button>
+    </nav>
+  
+    <mat-list *ngFor="let a of matieres">
+      <nav>
+        <a routerLink="/matiere/{{a.id}}">
+          <h3 mat-subheader>{{a.nom}}</h3>
+          <mat-list-item>
+            <mat-divider></mat-divider>
+            <p>{{a.prof}}</p>
+  
+          </mat-list-item>
+        </a>
+      </nav>
+    </mat-list>
+  </main>
+  

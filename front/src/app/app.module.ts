@@ -12,10 +12,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatListModule} from '@angular/material/list';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { RenduDirective } from './shared/rendu.directive';
 import { NonRenduDirective } from './shared/non-rendu.directive';
@@ -25,7 +30,6 @@ import { AddAssignmentComponent } from './assignments/add-assignment/add-assignm
 import { Routes, RouterModule } from '@angular/router';
 import { EditAssigmentComponent } from './assignments/edit-assigment/edit-assigment.component';
 import { HttpClientModule } from '@angular/common/http';
-import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
@@ -34,6 +38,12 @@ import { Role } from './_models/role';
 import { RegisterComponent } from './register/register.component';
 //import { RegisterComponent } from './register/register.component';
 //import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { ImageuploadComponent } from './imageupload/imageupload.component';
+import { MatieresComponent } from './matieres/matieres.component';
+import { MatiereDetailComponent } from './matieres/matiere-detail/matiere-detail.component';
+import { EditMatiereComponent } from './matieres/edit-matiere/edit-matiere.component';
+import { AddMatiereComponent } from './matieres/add-matiere/add-matiere.component';
+
 const routes:Routes = [
   {
     // indique que http://localhost:4200 sans rien ou avec un "/" à la fin
@@ -68,7 +78,27 @@ const routes:Routes = [
   {
     path:"assignment/:id/edit",
     component:EditAssigmentComponent,
-    //canActivate : [AuthGuard]
+//    canActivate : [AuthGuard]
+  },
+  {
+    path:"images/add",
+    component:ImageuploadComponent  
+  },
+  {
+    path:"matiere",
+    component:MatieresComponent  
+  },
+  {
+    path:"matiere/add",
+    component:AddMatiereComponent
+  },
+  {
+    path:"matiere/:id",
+    component:MatiereDetailComponent
+  },
+  {
+    path:"matiere/:id/edit",
+    component:EditMatiereComponent
   }
 ]
 @NgModule({
@@ -81,14 +111,29 @@ const routes:Routes = [
     AddAssignmentComponent,
     EditAssigmentComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
     //RegisterComponent
+    AddMatiereComponent,
+    EditAssigmentComponent,
+    MatiereDetailComponent,
+    MatieresComponent,
+    EditMatiereComponent,
+    ImageuploadComponent,
+    MatieresComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    DragDropModule,
+    FlexLayoutModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
+
+    MatGridListModule,
+    MatToolbarModule,
+    MatSelectModule,
     MatButtonModule, MatDividerModule, MatIconModule,
     MatFormFieldModule, MatInputModule, MatDatepickerModule,
     MatNativeDateModule, MatListModule, MatCardModule, MatCheckboxModule,

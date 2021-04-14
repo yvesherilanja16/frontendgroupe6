@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Matiere } from 'src/app/matieres/matiere.model';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
+import { MatieresService } from 'src/app/shared/matieres.service';
 import { Assignment } from '../assignment.model';
 
 @Component({
@@ -12,11 +14,19 @@ export class AddAssignmentComponent implements OnInit {
   // Pour les champs du formulaire
   nom = '';
   dateDeRendu = null;
-
+  matieres:Matiere[] = [];
+  matiere:Matiere = null;
+  auteur = '';
   constructor(private assignmentsService:AssignmentsService,
+              private matiereService:MatieresService,
               private router:Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.matiereService.getAllMatieres().subscribe((matieres)=>{
+      this.matieres=matieres;
+      console.log(matieres);
+    })
+  }
 
   onSubmit(event) {
     if((!this.nom) || (!this.dateDeRendu)) return;
@@ -25,6 +35,9 @@ export class AddAssignmentComponent implements OnInit {
     nouvelAssignment.nom = this.nom;
     nouvelAssignment.dateDeRendu = this.dateDeRendu;
     nouvelAssignment.rendu = false;
+    nouvelAssignment.matiere = this.matiere;
+    nouvelAssignment.auteur = this.auteur;
+    nouvelAssignment.note = null;
 
     this.assignmentsService.addAssignment(nouvelAssignment)
       .subscribe(reponse => {

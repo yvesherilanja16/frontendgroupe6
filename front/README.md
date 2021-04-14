@@ -12,7 +12,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `../api/frontdist/` directory. Use the `--prod` flag for a production build.
+Run `npm run buildlocal` to build the project with local environment variables,  or `npm run buildprod` to build with production environment variables. The build artifacts will be stored in the `../api/frontdist/` directory.
 
 ## Run Build
 

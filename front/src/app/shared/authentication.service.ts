@@ -25,7 +25,7 @@ export class AuthenticationService {
     }
 
     login(username: string, password: string) {
-        return this.http.post<any>(`${environment.apiUrl}/auth/signin`, { username, password })
+        return this.http.post<any>(`${environment.backendUri}/auth/signin`, { username, password })
             .pipe(map(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
@@ -36,7 +36,7 @@ export class AuthenticationService {
     }
     register(username:string,email:string,password:string,roles:any){
         console.log("register service");
-        return this.http.post<any>(`${environment.apiUrl}/auth/signup`, { username, email,password,roles })
+        return this.http.post<any>(`${environment.backendUri}/auth/signup`, { username, email,password,roles })
     }
 
     logout() {
