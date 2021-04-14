@@ -1,0 +1,35 @@
+<div class="main-wrapper" fxLayout="row">
+
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Inscription</mat-card-title>
+        <p>{{message}}</p>
+      </mat-card-header>
+  
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <mat-card-content>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Pseudo" formControlName="username" >
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Email" formControlName="email" type="email">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Mot de passe" formControlName="password" class="form-control"  type="text">
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Vous êtes</mat-label>
+            <mat-select formControlName="roles">
+              <mat-option value="eleve">ELEVE</mat-option>
+              <mat-option value="admin">ADMIN</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-card-content>
+        <button mat-raised-button type="submit" color="primary" class="btn-block">S'inscrire</button>
+        
+      </form>
+      <br>
+      <button mat-flat-button color="accent" (click)="login();" class="btn-block">Login</button>
+    </mat-card>
+  
+  </div>
