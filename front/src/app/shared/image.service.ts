@@ -54,6 +54,10 @@ export class ImageService {
         return { id,nom,type,data:filedata};
         })
       )
-    } 
+  }
+  
+  getImageUrl(id: string){
+    return `${this.uri}/${id}`;
+  }
 
 }

@@ -44,6 +44,7 @@ export class AssignmentsService {
     //return of(assignementCherche);
 
     return this.http.get<Assignment>(this.uri + "/" + id)
+    /*
     .pipe(
       // traitement 1
       map(a => {
@@ -52,14 +53,10 @@ export class AssignmentsService {
       }),
       tap(a => {
         console.log("TRACE DANS TAP : j'ai reçu " + a.nom);
-      }),
-      /*
-      filter(a => {
-        return (a.rendu)
       })
-      */
       catchError(this.handleError<any>('### catchError: getAssignments by id avec id=' + id))
-    );
+    )*/
+    ;
   }
 
   private handleError<T>(operation: any, result?: T) {

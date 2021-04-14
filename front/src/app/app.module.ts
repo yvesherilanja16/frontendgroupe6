@@ -57,6 +57,10 @@ const routes:Routes = [
   {
     path:"images/add",
     component:ImageuploadComponent  
+  },
+  {
+    path:"matieres",
+    component:MatieresComponent  
   }
 ]
 @NgModule({
