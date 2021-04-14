@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../shared/authentication.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class RegisterComponent implements OnInit {
   message = undefined;
   constructor(
     private formBuilder: FormBuilder,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -37,5 +39,8 @@ export class RegisterComponent implements OnInit {
     })
 
   }
+  login= function () {
+    this.router.navigate(['/login']);
+};
 
 }
