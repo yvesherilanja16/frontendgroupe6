@@ -22,6 +22,7 @@ FONCTIONALITES:
 -Scroll infini sur les colonnes d'assignements rendus ou nons
 -Modificaiton de notes seulement apres avoir rendu un assignment
 -Authentification (admin)
+-Tout est combiné en un seul heroku (le serveur de l'api fait sert aussi les fichiers d'angular)
 
 
 SOURCES ET DOCUMENTATIONS:
