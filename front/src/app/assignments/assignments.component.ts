@@ -1,3 +1,4 @@
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentsService } from '../shared/assignments.service';
@@ -101,5 +102,11 @@ export class AssignmentsComponent implements OnInit {
         limit:this.limit,
       }
     });
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    let elem = this.assignments[event.previousIndex];
+    this.assignments.splice(event.previousIndex, 1);
+    this.assignments.splice(event.currentIndex, 0, elem);
   }
 }
