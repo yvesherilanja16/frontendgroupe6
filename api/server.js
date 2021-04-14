@@ -55,6 +55,9 @@ app.route(prefix + '/assignments/:id')
   .get(assignment.getAssignment)
   .delete(assignment.deleteAssignment);
 
+app.route(prefix + '/matieresall')
+  .get(matiere.getAllMatieres);
+
 app.route(prefix + '/matieres')
   .get(matiere.getMatieres)
   .post(matiere.postMatiere)
@@ -69,6 +72,9 @@ app.route(prefix + '/images')
 
 app.route(prefix + '/images/:id')
   .get(image.getImageAsFile);
+
+  app.route(prefix + '/imagesData/:id')
+  .get(image.getImage);
 
 app.use(express.static(__dirname + "/frontdist/"));
 

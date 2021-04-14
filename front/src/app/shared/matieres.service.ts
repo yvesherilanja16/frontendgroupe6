@@ -19,10 +19,12 @@ export class MatieresService {
     return "mat_"+Date.now();
   }
 
-  getMatieres():Observable<Matiere[]> {
-    console.log("Dans le service de gestion des assignments...")
-    //return of(this.assignments);
-    return this.http.get<Matiere[]>(this.uri);
+  getMatieres():Observable<any> {
+    return this.http.get(this.uri);
+  }
+
+  getAllMatieres():Observable<any> {
+    return this.http.get(this.uri+"all");
   }
 
   getMatieresPagine(page:number, limit:number):Observable<any> {
@@ -55,8 +57,13 @@ export class MatieresService {
         )
       );
   }
+
+  // note: champ id plutot que _id utilisé pour faciliter les tests
+  deleteMatiere(id:string){
+    return this.http.delete(`${this.uri}/${id}`);
+  }
+
   updateMatiere(matiere:Matiere, imageProfFile: File = null, imageMatiereFile: File = null):Observable<any> {
-    matiere.id = this.generateId();
     console.log("HERE");
     return combineLatest([
       this.imageService.convertImage(imageProfFile),
@@ -68,14 +75,14 @@ export class MatieresService {
         if(images[0] != null){
           matiere.imageProf = images[0];
         }
-        if(images[0] != null){
+        if(images[1] != null){
           matiere.imageMatiere = images[1];
         }
         return matiere;
       })
       ).pipe(
         switchMap((matiere:any) => 
-        this.http.post(this.uri, matiere).pipe(
+        this.http.put(this.uri, matiere).pipe(
           map((res)=> ({result:res, matiere}))
         )
         )

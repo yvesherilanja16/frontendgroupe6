@@ -17,7 +17,31 @@ function getAssignments(req, res){
 
 // Récupérer tous les assignments (GET), AVEC PAGINATION
 function getAssignments(req, res) {
-  var aggregateQuery = Assignment.aggregate();
+  var aggregateQuery = Assignment.aggregate([{
+    $lookup: {
+        from: "matiere",
+        localField: "matiere",
+        foreignField: "_id",
+        as: "matiere"
+    }
+}]);
+  if(req.query.rendu != null ){
+    if(req.query.rendu == "true"){
+      aggregateQuery = aggregateQuery
+      .match({
+        "rendu":true
+      });
+    } else {
+      aggregateQuery = aggregateQuery
+      .match({
+        "rendu":false
+      });
+    }
+  }
+  aggregateQuery = aggregateQuery.unwind({
+    path:'$matiere',
+    preserveNullAndEmptyArrays:true
+  });
   
   Assignment.aggregatePaginate(
     aggregateQuery,
@@ -34,15 +58,19 @@ function getAssignments(req, res) {
   );
 }
 
+
+
 // Récupérer un assignment par son id (GET)
 function getAssignment(req, res) {
   let assignmentId = req.params.id;
 
-  Assignment.findOne({ id: assignmentId }, (err, assignment) => {
+  Assignment.findOne({ id: assignmentId }).populate("matiere").exec((err, assignment) => {
+    console.log(err);
     if (err) {
       res.send(err);
+    } else {
+      res.json(assignment);
     }
-    res.json(assignment);
   });
 }
 
@@ -51,8 +79,11 @@ function postAssignment(req, res) {
   let assignment = new Assignment();
   assignment.id = req.body.id;
   assignment.nom = req.body.nom;
+  assignment.auteur = req.body.auteur;
   assignment.dateDeRendu = req.body.dateDeRendu;
   assignment.rendu = req.body.rendu;
+  assignment.matiere = req.body.matiere;
+  assignment.note = req.body.note;
 
   console.log("POST assignment reçu :");
   console.log(assignment);

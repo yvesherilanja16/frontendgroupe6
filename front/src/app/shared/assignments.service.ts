@@ -25,6 +25,10 @@ export class AssignmentsService {
     return this.http.get<Assignment[]>(this.uri);
   }
 
+  getAssignmentsRendusPagine(rendu:boolean, page:number, limit:number):Observable<any> {
+    return this.http.get<Assignment[]>(`${this.uri}?rendu=${rendu}&page=${page}&limit=${limit}`);
+  }
+
   getAssignmentsPagine(page:number, limit:number):Observable<any> {
     return this.http.get<Assignment[]>(this.uri+"?page="+page + "&limit="+limit);
   }
@@ -74,35 +78,16 @@ export class AssignmentsService {
 
   addAssignment(assignment:Assignment):Observable<any> {
     assignment.id = this.generateId();
-    //this.loggingService.log(assignment.nom, " a été ajouté");
-
-    /*this.assignments.push(assignment);
-
-
-    return of("Service: assignment ajouté !");*/
-
     return this.http.post(this.uri, assignment);
   }
 
   updateAssignment(assignment:Assignment):Observable<any> {
-    // besoin de ne rien faire puisque l'assignment passé en paramètre
-    // est déjà un élément du tableau
-
-    //let index = this.assignments.indexOf(assignment);
-
-    //console.log("updateAssignment l'assignment passé en param est à la position " + index + " du tableau");
     this.loggingService.log(assignment.nom, " a été modifié");
-
     return this.http.put(this.uri, assignment);
   }
 
   deleteAssignment(assignment:Assignment):Observable<any> {
-    /*
-    let index = this.assignments.indexOf(assignment);
-
-    this.assignments.splice(index, 1);
-    */
-
+ 
 
     this.loggingService.log(assignment.nom, " a été supprimé");
 

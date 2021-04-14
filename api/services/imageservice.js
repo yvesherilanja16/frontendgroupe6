@@ -1,7 +1,10 @@
-const image = require('../model/image');
+let Image = require("../model/image");
 
 function saveImage(imagemodel) {
     return new Promise((resolve,reject) => {
+        if(imagemodel == null || imagemodel == undefined){
+            resolve(null);
+        }
         let image = new Image();
         image.id = imagemodel.id;
         image.nom = imagemodel.nom;
@@ -17,7 +20,7 @@ function saveImage(imagemodel) {
             }
             else resolve(image);
         });
-    }
-  }
+    });
+}
   
   module.exports = {saveImage}

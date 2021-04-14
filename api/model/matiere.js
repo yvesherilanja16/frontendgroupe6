@@ -2,19 +2,13 @@ let mongoose = require('mongoose');
 var aggregatePaginate = require("mongoose-aggregate-paginate-v2");
 
 let Schema = mongoose.Schema;
-
+// edit utilisation de l'id manuel plutot que celui automatique, plus de lectures d'images en front qu'en back 
 let MatiereSchema = Schema({
     id: String,
     nom: String,
     prof: String,
-    imageProf: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Image'
-    },
-    imageMatiere: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Image'
-    },
+    imageProf: String,
+    imageMatiere: String
 },{ collection: 'matiere' });
 
 MatiereSchema.plugin(aggregatePaginate);
