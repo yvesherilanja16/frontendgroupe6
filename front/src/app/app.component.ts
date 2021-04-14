@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AssignmentsService } from './shared/assignments.service';
 import { AuthService } from './shared/auth.service';
+import { AuthenticationService } from './shared/authentication.service';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +14,7 @@ export class AppComponent {
   title = 'Application de gestion des assignments';
 
   constructor(private authService:AuthService, private router:Router,
-              private assignmentsService:AssignmentsService) {}
+              private assignmentsService:AssignmentsService,private authenticationService: AuthenticationService) {}
 
   login() {
     // si je suis pas loggé, je me loggue, sinon, si je suis
@@ -41,4 +43,8 @@ export class AppComponent {
         this.router.navigate(["/home"], {replaceUrl:true});
       })
   }
+  logout() {
+    this.authenticationService.logout();
+}
+  
 }
