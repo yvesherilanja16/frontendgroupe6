@@ -79,6 +79,7 @@ export class EditAssigmentComponent implements OnInit {
     this.assignment.nom = this.nom;
     this.assignment.auteur = this.auteur;
     this.assignment.note = this.note;
+    this.assignment.matiere = this.matiere;
     console.log("APRES MODI")
     console.log(this.assignment);
 //    this.assignment.rendu= this.rendu;

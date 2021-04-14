@@ -8,13 +8,16 @@
     <input matInput placeholder="Prof de la matière" required [(ngModel)]="prof" name="prof">
   </mat-form-field>
 
+    <label>Image de la matière
 
-    <input   type="file" placeholder="Image de la matiere" (change)="handleImageMatiereFileInput($event.target.files)" />
+      <input   type="file" placeholder="Image de la matiere" (change)="handleImageMatiereFileInput($event.target.files)" />
+    </label>
 
   
+    <label>Image du prof
 
     <input  type="file" placeholder="Image du prof" (change)="handleImageProfFileInput($event.target.files)" />
-
+</label>
   
   <button mat-stroked-button color="primary">
     Modifier la matière

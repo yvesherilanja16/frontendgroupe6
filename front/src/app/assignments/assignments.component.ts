@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentsService } from '../shared/assignments.service';
+import { ImageService } from '../shared/image.service';
 import { Assignment } from './assignment.model';
 
 @Component({
@@ -41,6 +42,7 @@ export class AssignmentsComponent implements OnInit {
   constructor(private assignmentsService:AssignmentsService,
               private route:ActivatedRoute,
               private dialog:MatDialog,
+              private imageService:ImageService,
               private router:Router) {}
 
   ngOnInit() {
@@ -77,6 +79,12 @@ export class AssignmentsComponent implements OnInit {
     this.loading1=true;
     this.assignmentsService.getAssignmentsRendusPagine(false,this.page1 + 1, this.limit1)
     .subscribe(data => {
+      data.docs.forEach(agt => {
+        if(agt.matiere != undefined && agt.matiere != null){
+          agt.matiere.imageProfLien = this.imageService.getImageUrl(agt.matiere.imageProf);
+          agt.matiere.imageMatiereLien = this.imageService.getImageUrl(agt.matiere.imageMatiere);
+        }
+      });
       this.assignmentsnonrendus.push(...data.docs);
       this.page1 = data.page;
       this.limit1 = data.limit;
@@ -95,6 +103,12 @@ export class AssignmentsComponent implements OnInit {
     this.loading2=true;
     this.assignmentsService.getAssignmentsRendusPagine(true,this.page2 + 1, this.limit2)
     .subscribe(data => {
+      data.docs.forEach(agt => {
+        if(agt.matiere != undefined && agt.matiere != null){
+          agt.matiere.imageProfLien = this.imageService.getImageUrl(agt.matiere.imageProf);
+          agt.matiere.imageMatiereLien = this.imageService.getImageUrl(agt.matiere.imageMatiere);
+        }
+      });
       this.assignmentsrendus.push(...data.docs);
       this.page2 = data.page;
       this.limit2 = data.limit;
@@ -112,6 +126,12 @@ export class AssignmentsComponent implements OnInit {
   getAssignmentsNonRendus() {
     this.assignmentsService.getAssignmentsRendusPagine(false,this.page1, this.limit1)
     .subscribe(data => {
+      data.docs.forEach(agt => {
+        if(agt.matiere != undefined && agt.matiere != null){
+          agt.matiere.imageProfLien = this.imageService.getImageUrl(agt.matiere.imageProf);
+          agt.matiere.imageMatiereLien = this.imageService.getImageUrl(agt.matiere.imageMatiere);
+        }
+      });
       this.assignmentsnonrendus = data.docs;
       this.page1 = data.page;
       this.limit1 = data.limit;
@@ -129,6 +149,12 @@ export class AssignmentsComponent implements OnInit {
   getAssignmentsRendus() {
     this.assignmentsService.getAssignmentsRendusPagine(true,this.page2, this.limit2)
     .subscribe(data => {
+      data.docs.forEach(agt => {
+        if(agt.matiere != undefined && agt.matiere != null){
+          agt.matiere.imageProfLien = this.imageService.getImageUrl(agt.matiere.imageProf);
+          agt.matiere.imageMatiereLien = this.imageService.getImageUrl(agt.matiere.imageMatiere);
+        }
+      });
       this.assignmentsrendus = data.docs;
       this.page2 = data.page;
       this.limit2 = data.limit;
@@ -200,6 +226,9 @@ export class AssignmentsComponent implements OnInit {
       const dialogRef = this.dialog.open(MoreAssignmentLoadingDialog,{disableClose:true});
     }
 
+    voirdetails(id:string){
+      this.router.navigate(["/assignment",id])
+    }
 
 }
 

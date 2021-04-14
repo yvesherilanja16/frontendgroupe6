@@ -45,7 +45,7 @@ export class ImageService {
       return of(null);
     }
 
-    let id = "img_"+Date.now();
+    let id = "img_"+Date.now()+"_"+Math.floor(Math.random()*500);
     let nom = file.name;
     let type = file.type;
     return this.getBase64(file).pipe(
