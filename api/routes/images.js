@@ -14,13 +14,18 @@ function getImage(req, res) {
 
 function getImageAsFile(req,res){
   let imageId = req.params.id;
-
+  if(imageId == "null"){
+    res.writeHead(404,"Fichier introuvable");
+    return;
+  }
   Image.findOne({ id: imageId }, (err, image) => {
     if (err) {
       res.send(err);
     }
     else {
-
+      if(image.type == null){
+        image.type = "image/png";
+      }
       res.writeHead(200, {
         'Content-Type': image.type,
         'Content-Disposition': `attachment; filename="${image.nom}"`,

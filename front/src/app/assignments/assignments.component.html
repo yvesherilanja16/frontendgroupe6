@@ -14,11 +14,14 @@
     <div fxLayout="row" style="height:100%;">
       <div fxFlex="25%">
         <div fxLayout="column" style="height: 100%;">
-          <div>
+          <div style="position: relative;">
             <h2>
               Assignements non rendus
-
+              
             </h2>
+            <a href="/add" mat-mini-fab color="primary" style="position:absolute; bottom:20%;right:10%;">
+              <mat-icon>add</mat-icon>
+            </a>
           </div>
           <div fxFlex style=" overflow-y: auto;" (scroll)="onScroll1($event)">
 
@@ -27,12 +30,29 @@
               [cdkDropListData]="assignmentsnonrendus"
               [cdkDropListConnectedTo]="[renduslist]"
               >
-                <mat-card class="assignment-box" *ngFor="let a of assignmentsnonrendus" cdkDrag>
+                <mat-card (click)="voirdetails(a.id)" class="assignment-box" *ngFor="let a of assignmentsnonrendus" cdkDrag>
                   <mat-card-header>
-                    <div mat-card-avatar class="example-header-image"></div>
-                    <mat-card-title>{{a.nom}}</mat-card-title>
+                    <div mat-card-avatar>
+                      <img style="height:100%;width:100%;" src="{{a.matiere?.imageProfLien}}">
+                    </div>
+                    <mat-card-title>#{{a.id}} - {{a.nom}}</mat-card-title>
                     <mat-card-subtitle>{{a.dateDeRendu}}</mat-card-subtitle>
                   </mat-card-header>
+                  <mat-card-content>
+                    <div fxLayout="row">
+
+                      <div style="height: 30%;width:30%; max-width: 135px;max-height: 135px;overflow:hidden;">
+                        <img style="width:100%;" src="{{a.matiere?.imageMatiereLien}}"/>
+                      </div>
+                      <div fxFlex>
+                        <mat-list>
+                          <mat-list-item> Matière : {{a.matiere?.nom}} </mat-list-item>
+                          <mat-list-item> Prof : {{a.matiere?.prof}} </mat-list-item>
+                          <mat-list-item> Auteur : {{a.auteur}} </mat-list-item>
+                         </mat-list>
+                      </div>
+                    </div>
+                  </mat-card-content>
                 </mat-card>
                 <mat-card *ngIf="loading1" style="background-color: rgb(207, 207, 207);" class="assignment-box">
                   <div>
@@ -63,13 +83,30 @@
               [cdkDropListData]="assignmentsrendus"
               [cdkDropListConnectedTo]="[nonrenduslist]"
               >
-                <mat-card class="assignment-box" *ngFor="let a of assignmentsrendus" cdkDrag>
-                  <mat-card-header>
-                    <div mat-card-avatar class="example-header-image"></div>
-                    <mat-card-title>{{a.nom}}</mat-card-title>
-                    <mat-card-subtitle>{{a.dateDeRendu}}</mat-card-subtitle>
-                  </mat-card-header>
-                </mat-card>
+              <mat-card (click)="voirdetails(a.id)" class="assignment-box" *ngFor="let a of assignmentsrendus" cdkDrag>
+                <mat-card-header>
+                  <div mat-card-avatar>
+                    <img style="height:100%;width:100%;" src="{{a.matiere?.imageProfLien}}">
+                  </div>
+                  <mat-card-title>#{{a.id}} - {{a.nom}}</mat-card-title>
+                  <mat-card-subtitle>{{a.dateDeRendu}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <div fxLayout="row">
+
+                    <div style="height: 30%;width:30%; max-width: 135px;max-height: 135px; overflow:hidden;">
+                      <img style="width:100%;" src="{{a.matiere?.imageMatiereLien}}"/>
+                    </div>
+                    <div fxFlex>
+                      <mat-list>
+                        <mat-list-item> Matière : {{a.matiere?.nom}} </mat-list-item>
+                        <mat-list-item> Prof : {{a.matiere?.prof}} </mat-list-item>
+                        <mat-list-item> Auteur : {{a.auteur}} </mat-list-item>
+                       </mat-list>
+                    </div>
+                  </div>
+                </mat-card-content>
+              </mat-card>
                 <mat-card *ngIf="loading2" style="background-color: rgb(207, 207, 207);" class="assignment-box">
                   <div>
                     Chargement en cours...

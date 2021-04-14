@@ -12,15 +12,11 @@
      <p>
        Matière : {{assignmentTransmis.matiere.nom}}
      </p>
+     <img height="200px" width="200px" src="{{assignmentTransmis.matiere.imageMatiereLien}}">
      <p>
        Prof : {{assignmentTransmis.matiere.prof}}
-     </p>
-     <p>
-      ImageProf: {{assignmentTransmis.matiere.imageProfLien}}
-      ImageMatiere: {{assignmentTransmis.matiere.imageMatiereLien}}
-     </p>
-     <img height="200px" width="200px" src="{{assignmentTransmis.matiere.imageProfLien}}">
-     <img height="200px" width="200px" src="{{assignmentTransmis.matiere.imageMatiereLien}}">
+      </p>
+      <img height="200px" width="200px" src="{{assignmentTransmis.matiere.imageProfLien}}">
     </mat-card-content>
     <div id="bottom">
       <mat-checkbox *ngIf="!assignmentTransmis.rendu" (click)="onAssignmentRendu()">
