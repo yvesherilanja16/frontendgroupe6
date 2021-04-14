@@ -82,6 +82,7 @@ export class AssignmentsService {
   }
 
   updateAssignment(assignment:Assignment):Observable<any> {
+    console.log(assignment);
     this.loggingService.log(assignment.nom, " a été modifié");
     return this.http.put(this.uri, assignment);
   }

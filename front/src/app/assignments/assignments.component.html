@@ -14,37 +14,76 @@
     <div fxLayout="row" style="height:100%;">
       <div fxFlex="25%">
         <div fxLayout="column" style="height: 100%;">
-        <div>
+          <div>
+            <h2>
+              Assignements non rendus
 
-          <nav>
-            <button mat-raised-button color="primary" (click)="premierePage()">
-              Première
-            </button>
-            <button mat-raised-button color="primary" [disabled]="!hasPrevPage" (click)="pagePrecedente()">
-              Prev
-            </button>
-            <button mat-raised-button color="primary" [disabled]="!hasNextPage" (click)="pageSuivante()">
-              Suiv
-            </button>
-            <button mat-raised-button color="primary" (click)="dernierePage()">
-              Dernière
-            </button>
-          </nav>
-        </div>
-        <div fxFlex style=" overflow-y: auto;">
+            </h2>
+          </div>
+          <div fxFlex style=" overflow-y: auto;" (scroll)="onScroll1($event)">
 
-            <div cdkDropList class="assignment-list" (cdkDropListDropped)="drop($event)">
-              <mat-card class="assignment-box" *ngFor="let a of assignments" cdkDrag>
-                <mat-card-header>
-                  <div mat-card-avatar class="example-header-image"></div>
-                  <mat-card-title>{{a.nom}}</mat-card-title>
-                  <mat-card-subtitle>{{a.dateDeRendu}}</mat-card-subtitle>
-                </mat-card-header>
-              </mat-card>
-            </div>
-          
+              <div #nonrenduslist="cdkDropList" cdkDropList class="assignment-list" (cdkDropListDropped)="drop($event)"
+              
+              [cdkDropListData]="assignmentsnonrendus"
+              [cdkDropListConnectedTo]="[renduslist]"
+              >
+                <mat-card class="assignment-box" *ngFor="let a of assignmentsnonrendus" cdkDrag>
+                  <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>{{a.nom}}</mat-card-title>
+                    <mat-card-subtitle>{{a.dateDeRendu}}</mat-card-subtitle>
+                  </mat-card-header>
+                </mat-card>
+                <mat-card *ngIf="loading1" style="background-color: rgb(207, 207, 207);" class="assignment-box">
+                  <div>
+                    Chargement en cours...
+                    <mat-spinner diameter="20" style="float:right">
+                    </mat-spinner>
+                  </div>
+                </mat-card>
+                <button *ngIf="!loading1" (click)="loadMoreNonRendus()" mat-button color="primary">Charger plus</button>
+              </div>
+            
+          </div>
+        
         </div>
       </div>
+      <div fxFlex="25%">
+        <div fxLayout="column" style="height: 100%;">
+          <div>
+            <h2>
+              Assignements rendus
+
+            </h2>
+          </div>
+          <div fxFlex style=" overflow-y: auto;" (scroll)="onScroll2($event)">
+
+              <div #renduslist="cdkDropList" cdkDropList class="assignment-list" (cdkDropListDropped)="drop($event)"
+                            
+              [cdkDropListData]="assignmentsrendus"
+              [cdkDropListConnectedTo]="[nonrenduslist]"
+              >
+                <mat-card class="assignment-box" *ngFor="let a of assignmentsrendus" cdkDrag>
+                  <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>{{a.nom}}</mat-card-title>
+                    <mat-card-subtitle>{{a.dateDeRendu}}</mat-card-subtitle>
+                  </mat-card-header>
+                </mat-card>
+                <mat-card *ngIf="loading2" style="background-color: rgb(207, 207, 207);" class="assignment-box">
+                  <div>
+                    Chargement en cours...
+                    <mat-spinner diameter="20" style="float:right">
+                    </mat-spinner>
+                  </div>
+                </mat-card>
+                <button *ngIf="!loading2" (click)="loadMoreRendus()" mat-button color="primary">Charger plus</button>
+
+              </div>
+            
+          </div>
+        
+        </div>
       </div>
     </div>  
   </div>

@@ -19,7 +19,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { RenduDirective } from './shared/rendu.directive';
 import { NonRenduDirective } from './shared/non-rendu.directive';
@@ -35,6 +35,7 @@ import { MatieresComponent } from './matieres/matieres.component';
 import { MatiereDetailComponent } from './matieres/matiere-detail/matiere-detail.component';
 import { EditMatiereComponent } from './matieres/edit-matiere/edit-matiere.component';
 import { AddMatiereComponent } from './matieres/add-matiere/add-matiere.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const routes:Routes = [
   {
@@ -104,6 +105,9 @@ const routes:Routes = [
     FormsModule,
     DragDropModule,
     FlexLayoutModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
+
     MatGridListModule,
     MatToolbarModule,
     MatSelectModule,
