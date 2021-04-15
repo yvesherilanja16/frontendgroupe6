@@ -76,9 +76,9 @@ https://developer.mozilla.org/fr/docs/Web/API/FileReader/readAsDataURL (conversi
 
 https://stackoverflow.com/questions/28568816/express-js-how-to-download-base64-string-as-pdf-file/42626348#answer-42626348 (telechargement depuis base64)
 
-https://jasonwatmore.com/post/2020/09/09/angular-10-role-based-authorization-tutorial-with-example
+https://jasonwatmore.com/post/2020/09/09/angular-10-role-based-authorization-tutorial-with-example (Login JWT)
 
-https://bezkoder.com/angular-11-jwt-auth/
+https://bezkoder.com/angular-11-jwt-auth/ (Login JWT)
 
 ## NOTES DE DEPLOYEMENT:
 
