@@ -4,6 +4,8 @@ import { MatieresService } from 'src/app/shared/matieres.service';
 import { AuthService } from 'src/app/shared/auth.service';
 import { Matiere } from '../matiere.model';
 import { ImageService } from 'src/app/shared/image.service';
+import { User } from 'src/app/_models/user';
+import { AuthenticationService } from 'src/app/shared/authentication.service';
 
 @Component({
   selector: 'app-matiere-detail',
@@ -13,17 +15,21 @@ import { ImageService } from 'src/app/shared/image.service';
 export class MatiereDetailComponent implements OnInit {
   // passé sous forme d'attribut HTML
   matiere: Matiere;
+  user: User;
 
   constructor(
     private matieresService: MatieresService,
     private route: ActivatedRoute,
     private router: Router,
     private imageService: ImageService,
-    private authService:AuthService
-  ) {}
+    private authenticationService: AuthenticationService
+  ) {
+    this.authenticationService.user.subscribe(x => this.user = x);
+  }
 
   ngOnInit(): void {
     this.getMatiereById();
+    this.user = this.authenticationService.userValue;
   }
 
   getMatiereById() {

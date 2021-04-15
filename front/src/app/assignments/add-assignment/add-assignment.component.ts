@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Matiere } from 'src/app/matieres/matiere.model';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
+import { AuthenticationService } from 'src/app/shared/authentication.service';
 import { MatieresService } from 'src/app/shared/matieres.service';
+import { User } from 'src/app/_models/user';
 import { Assignment } from '../assignment.model';
 
 @Component({
@@ -17,11 +19,15 @@ export class AddAssignmentComponent implements OnInit {
   matieres:Matiere[] = [];
   matiere:Matiere = null;
   auteur = '';
+  user: User;
   constructor(private assignmentsService:AssignmentsService,
               private matiereService:MatieresService,
-              private router:Router) {}
+              private router:Router,private authenticationService: AuthenticationService) {
+                this.authenticationService.user.subscribe(x => this.user = x);
+              }
 
   ngOnInit(): void {
+    this.user = this.authenticationService.userValue;
     this.matiereService.getAllMatieres().subscribe((matieres)=>{
       this.matieres=matieres;
       console.log(matieres);

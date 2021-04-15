@@ -11,18 +11,21 @@
   </div>
   -->
   <div fxFlex >
-    <div fxLayout="row" style="height:100%;">
-      <div fxFlex="25%">
+    <div fxLayout="row" style="height:100%;margin-top: 1%;">
+      <div fxFlex="50%">
         <div fxLayout="column" style="height: 100%;">
-          <div style="position: relative;">
+          <div class="container titre"  style="text-align: center;">
             <h2>
-              Assignements non rendus
-              
+              Assignements non rendus 
             </h2>
-            <a href="/add" mat-mini-fab color="primary" style="position:absolute; bottom:20%;right:10%;">
-              <mat-icon>add</mat-icon>
-            </a>
+            <div style="position: relative;">
+           
+              <a href="/add" mat-mini-fab color="primary" style="position:absolute; bottom:20%;right:10%;">
+                <mat-icon>add</mat-icon>
+              </a>
+            </div>
           </div>
+         
           <div fxFlex style=" overflow-y: auto;" (scroll)="onScroll1($event)">
 
               <div #nonrenduslist="cdkDropList" cdkDropList class="assignment-list" (cdkDropListDropped)="drop($event)"
@@ -30,6 +33,7 @@
               [cdkDropListData]="assignmentsnonrendus"
               [cdkDropListConnectedTo]="[renduslist]"
               >
+              <div class="container" style="margin-top: 5%;width: 80%;margin-bottom: 20%;">
                 <mat-card (click)="voirdetails(a.id)" class="assignment-box" *ngFor="let a of assignmentsnonrendus" cdkDrag>
                   <mat-card-header>
                     <div mat-card-avatar>
@@ -54,6 +58,7 @@
                     </div>
                   </mat-card-content>
                 </mat-card>
+               
                 <mat-card *ngIf="loading1" style="background-color: rgb(207, 207, 207);" class="assignment-box">
                   <div>
                     Chargement en cours...
@@ -61,6 +66,7 @@
                     </mat-spinner>
                   </div>
                 </mat-card>
+              </div>
                 <button *ngIf="!loading1" (click)="loadMoreNonRendus()" mat-button color="primary">Charger plus</button>
               </div>
             
@@ -68,9 +74,9 @@
         
         </div>
       </div>
-      <div fxFlex="25%">
+      <div fxFlex="50%">
         <div fxLayout="column" style="height: 100%;">
-          <div>
+          <div class="container titre"  style="text-align: center;">
             <h2>
               Assignements rendus
 
@@ -83,6 +89,7 @@
               [cdkDropListData]="assignmentsrendus"
               [cdkDropListConnectedTo]="[nonrenduslist]"
               >
+              <div class="container" style="margin-top: 5%;width: 80%;margin-bottom: 20%;">
               <mat-card (click)="voirdetails(a.id)" class="assignment-box" *ngFor="let a of assignmentsrendus" cdkDrag>
                 <mat-card-header>
                   <div mat-card-avatar>
@@ -107,6 +114,7 @@
                   </div>
                 </mat-card-content>
               </mat-card>
+            
                 <mat-card *ngIf="loading2" style="background-color: rgb(207, 207, 207);" class="assignment-box">
                   <div>
                     Chargement en cours...
@@ -114,6 +122,7 @@
                     </mat-spinner>
                   </div>
                 </mat-card>
+              </div>
                 <button *ngIf="!loading2" (click)="loadMoreRendus()" mat-button color="primary">Charger plus</button>
 
               </div>

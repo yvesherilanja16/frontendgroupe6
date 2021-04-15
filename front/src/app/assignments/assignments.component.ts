@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentsService } from '../shared/assignments.service';
+import { AuthenticationService } from '../shared/authentication.service';
 import { ImageService } from '../shared/image.service';
+import { User } from '../_models/user';
 import { Assignment } from './assignment.model';
 
 @Component({
@@ -35,6 +37,7 @@ export class AssignmentsComponent implements OnInit {
   nextPage2: number;
   loading2: boolean = false;
   complete2:boolean = false;
+  user: User;
 
   miseajour:boolean = false;
 
@@ -43,9 +46,12 @@ export class AssignmentsComponent implements OnInit {
               private route:ActivatedRoute,
               private dialog:MatDialog,
               private imageService:ImageService,
-              private router:Router) {}
+              private router:Router,private authenticationService: AuthenticationService) {
+                this.authenticationService.user.subscribe(x => this.user = x);
+              }
 
   ngOnInit() {
+    this.user = this.authenticationService.userValue;
     console.log('AVANT AFFICHAGE');
     // on regarde s'il y a page= et limit = dans l'URL
     this.route.queryParams.subscribe(queryParams => {

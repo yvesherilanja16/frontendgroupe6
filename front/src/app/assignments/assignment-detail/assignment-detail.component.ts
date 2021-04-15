@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { AuthService } from 'src/app/shared/auth.service';
+import { AuthenticationService } from 'src/app/shared/authentication.service';
 import { ImageService } from 'src/app/shared/image.service';
+import { User } from 'src/app/_models/user';
 import { Assignment } from '../assignment.model';
 
 @Component({
@@ -13,17 +15,23 @@ import { Assignment } from '../assignment.model';
 export class AssignmentDetailComponent implements OnInit {
   // passé sous forme d'attribut HTML
   assignmentTransmis: Assignment;
+  user: User;
 
   constructor(
     private assignmentsService: AssignmentsService,
     private imageService: ImageService,
     private route: ActivatedRoute,
     private router: Router,
-    private authService:AuthService
-  ) {}
+    private authenticationService: AuthenticationService
+  
+  ) {
+    this.authenticationService.user.subscribe(x => this.user = x);
+  
+  }
 
   ngOnInit(): void {
     this.getAssignmentById();
+    this.user = this.authenticationService.userValue;
   }
 
   getAssignmentById() {

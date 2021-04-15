@@ -1,37 +1,45 @@
-<main class="container">
-    <a routerLink="/matiere/add" class="ajouterBtn">
-      <button mat-flat-button color="accent">
-        Ajouter un matiere
-      </button>
-    </a>
-    <h1>Liste des matieres</h1>
-    <mat-divider></mat-divider>
-    <nav>
-      <button mat-raised-button color="primary" (click)="premierePage()">
-        Première
-      </button>
-      <button mat-raised-button color="primary" [disabled]="!hasPrevPage" (click)="pagePrecedente()">
-        Prev
-      </button>
-      <button mat-raised-button color="primary" [disabled]="!hasNextPage" (click)="pageSuivante()">
-        Suiv
-      </button>
-      <button mat-raised-button color="primary" (click)="dernierePage()">
-        Dernière
-      </button>
-    </nav>
-  
-    <mat-list *ngFor="let a of matieres">
-      <nav>
-        <a routerLink="/matiere/{{a.id}}">
-          <h3 mat-subheader>{{a.nom}}</h3>
-          <mat-list-item>
-            <mat-divider></mat-divider>
-            <p>{{a.prof}}</p>
-  
-          </mat-list-item>
-        </a>
+<div class="container" id="titre">
+  <h3>Liste des matieres</h3>
+  <button routerLink="/matiere/add" class="btn btn-success ajouterBtn btn-sm">Ajouter un matiere</button>
+</div>
+<div class="container" id="content">
+    <div class="flexbox-parent">
+          <mat-list *ngFor="let a of matieres">
+            <div class="container mat">
+              <table class="table borderless">
+                <thead>
+                  <tr>
+                    <th style="text-align: center;" scope="col">{{a.nom}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="text-align: center;">{{a.prof}}</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: center;"><button routerLink="/matiere/{{a.id}}" mat-button class="btn btn-danger">Afficher</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+           
+          </mat-list>
+
+        </div>
+      <nav style="text-align: center;">
+        <button mat-raised-button color="primary" (click)="premierePage()">
+          <mat-icon>first_page</mat-icon>
+        </button>
+        <button mat-raised-button color="primary" [disabled]="!hasPrevPage" (click)="pagePrecedente()">
+          <mat-icon>navigate_before</mat-icon>
+        </button>
+        <button mat-raised-button color="primary" [disabled]="!hasNextPage" (click)="pageSuivante()">
+          <mat-icon>navigate_next</mat-icon>
+        </button>
+        <button mat-raised-button color="primary" (click)="dernierePage()">
+          <mat-icon>last_page</mat-icon>
+        </button>
       </nav>
-    </mat-list>
-  </main>
+</div>
+
   
