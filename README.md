@@ -34,37 +34,26 @@ Projet qui permet de manipuler des assignements qu'on attribue a des eleves , do
 
 ## FONCTIONALITES:
 
+ - Authentification (admin), utilisant JWT
+
  - Ajout/modification/liste/suppression de matières avec une photo du prof et une photo de la matière (stockés dans mongodb et modifiables)
    
  - Ajout/modification/liste/suppression d'assignement
 
-   
   
-
  - Rendu rapide d'un assignement grace au drag and drop entre les deux colonnes
-
    
 
  - Pagination des matières
 
-   
- 
 
  - Scroll infini sur les colonnes d'assignements rendus ou nons
 
+
+ - Modification de notes seulement apres avoir rendu un assignment
    
 
- - Modificaiton de notes seulement apres avoir rendu un assignment
-
-   
- 
-
- - Authentification (admin)
-
-   
-  
-
- - Tout est combiné en un seul heroku (le serveur de l'api fait sert aussi les fichiers d'angular)
+ - Tout est combiné en une seule application heroku (le serveur de l'api fait sert aussi les fichiers d'angular)
 
   
   
@@ -86,6 +75,10 @@ https://vegibit.com/mongoose-relationships-tutorial/ (relation dans mongoose, ut
 https://developer.mozilla.org/fr/docs/Web/API/FileReader/readAsDataURL (conversion d'image en base64)
 
 https://stackoverflow.com/questions/28568816/express-js-how-to-download-base64-string-as-pdf-file/42626348#answer-42626348 (telechargement depuis base64)
+
+https://jasonwatmore.com/post/2020/09/09/angular-10-role-based-authorization-tutorial-with-example
+
+https://bezkoder.com/angular-11-jwt-auth/
 
 ## NOTES DE DEPLOYEMENT:
 
