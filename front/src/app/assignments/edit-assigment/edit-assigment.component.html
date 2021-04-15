@@ -10,8 +10,11 @@
   </mat-form-field>  
 
   <mat-form-field>
-    <input matInput placeholder="Note" [(ngModel)]="note" name="note">
+    <input matInput [disabled]="!rendu" placeholder="Note" [(ngModel)]="note" name="note" min="0" max="20">
   </mat-form-field>  
+
+  <mat-checkbox [(ngModel)]="rendu" name="rendu"
+  (ngModelChange)="renduChanged()">Rendu </mat-checkbox>
 
   <mat-form-field appearance="fill">
     <mat-label>Matiere</mat-label>

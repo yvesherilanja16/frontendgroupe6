@@ -1,25 +1,27 @@
-<h2>Modification de la matière</h2>
-<form ngForm #formMatiere class="form" (submit)="onSubmit($event); formMatiere.reset();">
-  <mat-form-field>
-    <input matInput placeholder="Nom de la matière" required [(ngModel)]="nom" name="nom">
-  </mat-form-field>
+<h2 style="text-align: center;margin-top: 3%;">Modification de la matière</h2>
+<div class="container" style="margin-top: 2%;width: 50%;">
+  <form ngForm #formMatiere class="form" (submit)="onSubmit($event); formMatiere.reset();">
+    <mat-form-field>
+      <input matInput placeholder="Nom de la matière" required [(ngModel)]="nom" name="nom">
+    </mat-form-field>
 
-  <mat-form-field>
-    <input matInput placeholder="Prof de la matière" required [(ngModel)]="prof" name="prof">
-  </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Prof de la matière" required [(ngModel)]="prof" name="prof">
+    </mat-form-field>
 
-    <label>Image de la matière
+      <label>Image de la matière
 
-      <input   type="file" placeholder="Image de la matiere" (change)="handleImageMatiereFileInput($event.target.files)" />
-    </label>
+        <input   type="file" placeholder="Image de la matiere" (change)="handleImageMatiereFileInput($event.target.files)" />
+      </label>
 
-  
-    <label>Image du prof
+    
+      <label>Image du prof
 
-    <input  type="file" placeholder="Image du prof" (change)="handleImageProfFileInput($event.target.files)" />
-</label>
-  
-  <button mat-stroked-button color="primary">
-    Modifier la matière
-  </button>
-</form>
+      <input  type="file" placeholder="Image du prof" (change)="handleImageProfFileInput($event.target.files)" />
+  </label>
+    
+    <button mat-stroked-button color="primary">
+      Modifier la matière
+    </button>
+  </form>
+</div>

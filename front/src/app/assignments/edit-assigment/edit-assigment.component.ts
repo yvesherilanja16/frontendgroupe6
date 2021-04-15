@@ -19,7 +19,9 @@ export class EditAssigmentComponent implements OnInit {
   note = null;
   auteur = "";
   dateDeRendu = null;
-  
+  rendu = false;
+  noteOld = null;
+
   constructor(
     private assignmentsService: AssignmentsService,
     private matiereService: MatieresService,
@@ -63,21 +65,34 @@ export class EditAssigmentComponent implements OnInit {
       this.assignment = assignment;
 
       this.nom = assignment.nom;
+      this.noteOld = assignment.note;
       this.note = assignment.note;
       this.auteur = assignment.auteur;
+      this.rendu = assignment.rendu;
       // this.matiere = assignment.matiere;
       this.dateDeRendu = assignment.dateDeRendu;
     });
     return requeteAssignment;
   }
 
+  renduChanged(){
+    if(!this.rendu){
+      this.note = null;
+    } else {
+      this.note = this.noteOld;
+    }
+  }
 
   onSubmit(event) {
     // on va modifier l'assignment
     if((!this.nom) || (!this.dateDeRendu)) return;
+    if(this.note>20 || this.note<0){
+      return;
+    }
 
     this.assignment.nom = this.nom;
     this.assignment.auteur = this.auteur;
+    this.assignment.rendu = this.rendu;
     this.assignment.note = this.note;
     this.assignment.matiere = this.matiere;
     console.log("APRES MODI")

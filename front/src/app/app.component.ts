@@ -18,8 +18,13 @@ export class AppComponent {
   constructor(private authService:AuthService, private router:Router,
               private assignmentsService:AssignmentsService,private authenticationService: AuthenticationService) {
                 this.authenticationService.user.subscribe(x => this.user = x);
+                
+               
               }
-
+              ngOnInit() {
+                this.user = this.authenticationService.userValue;
+                
+            }
   login() {
     // si je suis pas loggé, je me loggue, sinon, si je suis
     // loggé je me déloggue et j'affiche la page d'accueil

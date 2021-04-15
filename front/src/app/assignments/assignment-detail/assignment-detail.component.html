@@ -1,4 +1,81 @@
-<div class="container">
+<div class="container bootstrap snippets bootdey" style="padding-top: 2%;" *ngIf="assignmentTransmis">
+  <div class="row ng-scope">
+      <div class="col-md-4">
+          <div class="panel panel-default" style="padding-top: 3%;">
+              <div class="panel-body text-center">
+                  <div class="pv-lg"><img class="center-block img-responsive img-circle img-thumbnail thumb96" src="{{assignmentTransmis.matiere.imageMatiereLien}}" alt="Contact"></div>
+                  <h3 class="m0 text-bold">{{assignmentTransmis.matiere.nom}}</h3>
+                  <mat-card-subtitle>{{assignmentTransmis.dateDeRendu | date}}</mat-card-subtitle>
+                 
+              </div>
+          </div>
+          <div class="panel panel-default hidden-xs hidden-sm" style="padding-top: 3%;">
+              <div class="panel-heading">
+                  <div class="panel-title text-center">Professeur</div>
+              </div>
+              <div class="panel-body" style="padding-left: 5%;padding-bottom: 5%;">
+                  <div class="media">
+                      <div class="media-left media-middle">
+                          <a href="#"><img class="media-object img-circle img-thumbnail thumb48" src="{{assignmentTransmis.matiere.imageProfLien}}"></a>
+                      </div>
+                      <div class="media-body pt-sm">
+                          <h5 class="text-bold" style="margin-top: 10%;margin-left: 3%;">
+                            {{assignmentTransmis.matiere.prof}}
+                          </h5>
+                      </div>
+                  </div>
+                  
+              </div>
+          </div>
+      </div>
+      <div class="col-md-8">
+          <div class="panel panel-default">
+              <div class="panel-body" style="padding-top: 2%;">
+                  
+                  <div class="h4 text-center">{{assignmentTransmis.nom}}</div>
+                  <div class="row pv-lg">
+                      <div class="col-lg-2"></div>
+                      <div class="col-lg-8">
+                          <form class="form-horizontal ng-pristine ng-valid">
+                              <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="inputContact1">Auteur</label>
+                                  <div class="col-sm-10">
+                                      <input class="form-control" id="inputContact1" type="text" value="{{assignmentTransmis.auteur}}" readonly>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="inputContact2">Note</label>
+                                  <div class="col-sm-10">
+                                      <input class="form-control" id="inputContact2" type="email" value="{{assignmentTransmis.note}}" readonly>
+                                  </div>
+                              </div>
+                              <div class="form-group" *ngIf="user && user.roles[0]=='ROLE_ADMIN'">
+                                <mat-checkbox *ngIf="!assignmentTransmis.rendu" (click)="onAssignmentRendu()">
+                                  Rendu
+                                </mat-checkbox>
+                              </div>
+                              
+                              <div class="form-group">
+                                  <div class="col-sm-offset-2 col-sm-10">
+                                    <button *ngIf="user && user.roles[0]=='ROLE_ADMIN'" mat-stroked-button color="primary" (click)="onClickEdit()">EDIT</button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button mat-stroked-button color="warn" *ngIf="user && user.roles[0]=='ROLE_ADMIN'" (click)="onDelete()">DELETE</button>
+                                  </div>
+                                  
+                              </div>
+                             
+                          </form>
+                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+
+<!--<div class="container" >
+
   <mat-card *ngIf="assignmentTransmis">
     <mat-card-title>{{assignmentTransmis.nom}}</mat-card-title>
     <mat-card-subtitle>{{assignmentTransmis.dateDeRendu | date}}</mat-card-subtitle>
@@ -32,4 +109,6 @@
       <button mat-stroked-button color="warn" (click)="onDelete()">DELETE</button>
     </div>
   </mat-card>
-</div>
+</div> -->
+
+

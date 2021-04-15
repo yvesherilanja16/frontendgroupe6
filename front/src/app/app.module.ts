@@ -35,8 +35,6 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './shared/auth.guard';
 import { Role } from './_models/role';
 import { RegisterComponent } from './register/register.component';
-//import { RegisterComponent } from './register/register.component';
-//import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { ImageuploadComponent } from './imageupload/imageupload.component';
 import { MatieresComponent } from './matieres/matieres.component';
 import { MatiereDetailComponent } from './matieres/matiere-detail/matiere-detail.component';
@@ -44,6 +42,7 @@ import { EditMatiereComponent } from './matieres/edit-matiere/edit-matiere.compo
 import { AddMatiereComponent } from './matieres/add-matiere/add-matiere.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatTabsModule} from '@angular/material/tabs';
 const routes:Routes = [
   {
     // indique que http://localhost:4200 sans rien ou avec un "/" à la fin
@@ -60,12 +59,13 @@ const routes:Routes = [
   {
     path:"add",
     component:AddAssignmentComponent,
-    canActivate: [AuthGuard],
-    data: { roles: [Role.Eleve] }
+    canActivate: [AuthGuard]
+   // data: { roles: [Role.Eleve] }
   },
   {
     path:"assignment/:id",
-    component:AssignmentDetailComponent
+    component:AssignmentDetailComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:"login",
@@ -78,27 +78,33 @@ const routes:Routes = [
   {
     path:"assignment/:id/edit",
     component:EditAssigmentComponent,
+    canActivate: [AuthGuard]
 //    canActivate : [AuthGuard]
   },
   {
     path:"images/add",
-    component:ImageuploadComponent  
+    component:ImageuploadComponent,
+    canActivate: [AuthGuard]  
   },
   {
     path:"matiere",
-    component:MatieresComponent  
+    component:MatieresComponent,
+    canActivate: [AuthGuard] 
   },
   {
     path:"matiere/add",
-    component:AddMatiereComponent
+    component:AddMatiereComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:"matiere/:id",
-    component:MatiereDetailComponent
+    component:MatiereDetailComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:"matiere/:id/edit",
-    component:EditMatiereComponent
+    component:EditMatiereComponent,
+    canActivate: [AuthGuard]
   }
 ]
 @NgModule({
@@ -143,6 +149,7 @@ const routes:Routes = [
     ReactiveFormsModule,
     MatToolbarModule,
     MatSelectModule,
+    MatTabsModule,
     RouterModule.forRoot(routes), HttpClientModule
   ],
   providers: [],

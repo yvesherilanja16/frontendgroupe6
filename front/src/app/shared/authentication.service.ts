@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { User } from '../_models/user';
+import { ThisReceiver } from '@angular/compiler';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -24,10 +25,15 @@ export class AuthenticationService {
         return this.userSubject.value;
     }
 
+    isAdmin(){
+        return this.user.pipe(
+            map(x => x!=null && x.roles[0] == "ROLE_ADMIN")
+        );
+    }
+
     login(username: string, password: string) {
         return this.http.post<any>(`${environment.backendUri}/auth/signin`, { username, password })
             .pipe(map(user => {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
                 this.userSubject.next(user);
                 console.log(user);
@@ -40,7 +46,7 @@ export class AuthenticationService {
     }
 
     logout() {
-        // remove user from local storage to log user out
+
         localStorage.removeItem('user');
         this.userSubject.next(null);
         this.router.navigate(['/login']);

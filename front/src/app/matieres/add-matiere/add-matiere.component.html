@@ -1,17 +1,19 @@
-<form ngForm #formMatiere class="form" (submit)="onSubmit($event); formMatiere.reset();">
-  <mat-form-field>
-    <input matInput placeholder="Nom de la matière" required [(ngModel)]="nom" name="nom"/>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Prof de la matière" required [(ngModel)]="prof" name="prof"/>
-  </mat-form-field>
+<div class="container">
+  <form ngForm #formMatiere class="form" (submit)="onSubmit($event); formMatiere.reset();">
+    <mat-form-field>
+      <input matInput placeholder="Nom de la matière" required [(ngModel)]="nom" name="nom"/>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Prof de la matière" required [(ngModel)]="prof" name="prof"/>
+    </mat-form-field>
+      <label>Image matiere</label>
+      <input type="file" placeholder="Image de la matiere" (change)="handleImageMatiereFileInput($event.target.files)" />
 
-    <input type="file" placeholder="Image de la matiere" (change)="handleImageMatiereFileInput($event.target.files)" />
+      <label>Image prof</label>
+      <input type="file" placeholder="Image du prof" (change)="handleImageProfFileInput($event.target.files)" />
 
-
-    <input type="file" placeholder="Image du prof" (change)="handleImageProfFileInput($event.target.files)" />
-
-  <button mat-stroked-button color="primary">
-    Ajouter une matière
-  </button>
-</form>
+    <button class="btn btn-success"  style="margin-top: 10%;">
+      Ajouter une matière
+    </button>
+  </form>
+</div>
