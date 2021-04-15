@@ -48,7 +48,8 @@ const routes:Routes = [
     // indique que http://localhost:4200 sans rien ou avec un "/" à la fin
     // doit afficher le composant AssignmentsComponent (celui qui affiche la liste)
     path:"",
-    component:LoginComponent
+    component:AssignmentsComponent,
+    canActivate: [AuthGuard]
   },
   {
     // idem avec  http://localhost:4200/home
