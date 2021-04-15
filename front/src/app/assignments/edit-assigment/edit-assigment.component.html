@@ -1,40 +1,42 @@
-<h2>Modification de l'assignment</h2>
+<div class="container">
+<h2 style="text-align: center;">Modification de l'assignment</h2>
 
-<form ngForm #formAssignment class="form" (submit)="onSubmit($event); formAssignment.reset();">
-  <mat-form-field>
-    <input matInput placeholder="Nom du devoir" required [(ngModel)]="nom" name="nom">
-  </mat-form-field>
+  <form ngForm #formAssignment class="form" (submit)="onSubmit($event); formAssignment.reset();">
+    <mat-form-field>
+      <input matInput placeholder="Nom du devoir" required [(ngModel)]="nom" name="nom">
+    </mat-form-field>
 
-  <mat-form-field>
-    <input matInput placeholder="Auteur" required [(ngModel)]="auteur" name="auteur">
-  </mat-form-field>  
+    <mat-form-field>
+      <input matInput placeholder="Auteur" required [(ngModel)]="auteur" name="auteur">
+    </mat-form-field>  
 
-  <mat-form-field>
-    <input matInput [disabled]="!rendu" placeholder="Note" [(ngModel)]="note" name="note" min="0" max="20">
-  </mat-form-field>  
+    <mat-form-field>
+      <input matInput [disabled]="!rendu" placeholder="Note" [(ngModel)]="note" name="note" min="0" max="20">
+    </mat-form-field>  
 
-  <mat-checkbox [(ngModel)]="rendu" name="rendu"
-  (ngModelChange)="renduChanged()">Rendu </mat-checkbox>
+    <mat-checkbox [(ngModel)]="rendu" name="rendu"
+    (ngModelChange)="renduChanged()">Rendu </mat-checkbox>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Matiere</mat-label>
-    <mat-select [(value)]="matiere">
-      <mat-option *ngFor="let matiere of matieres" [value]="matiere">
-        {{matiere.nom}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Matiere</mat-label>
+      <mat-select [(value)]="matiere">
+        <mat-option *ngFor="let matiere of matieres" [value]="matiere">
+          {{matiere.nom}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Choisissez une date</mat-label>
-    <input matInput [matDatepicker]="picker" required [(ngModel)]="dateDeRendu" name="date">
+    <mat-form-field appearance="fill">
+      <mat-label>Choisissez une date</mat-label>
+      <input matInput [matDatepicker]="picker" required [(ngModel)]="dateDeRendu" name="date">
 
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
 
-  <button mat-stroked-button color="primary">
-    Modifier le devoir
-  </button>
-</form>
+    <button class="btn btn-warning" color="primary">
+      Modifier le devoir
+    </button>
+  </form>
+</div>
