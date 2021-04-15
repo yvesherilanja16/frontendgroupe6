@@ -83,3 +83,6 @@ https://bezkoder.com/angular-11-jwt-auth/
 ## NOTES DE DEPLOYEMENT:
 
 Le projet Angular est généré dans le dossier frontdist du projet Node.js , qui va servir les fichiers de ce dernier permettant de n'utiliser qu'un seul serveur pour le backend et le frontend. On ne déploye que le projet nodejs vers heroku.
+
+## LIEN VIDEO DE PRESENTATION
+https://youtu.be/Pl_J9o1-XJ8
