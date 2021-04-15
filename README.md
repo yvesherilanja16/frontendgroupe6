@@ -53,7 +53,7 @@ Projet qui permet de manipuler des assignements qu'on attribue a des eleves , do
  - Modification de notes seulement apres avoir rendu un assignment
    
 
- - Tout est combiné en une seule application heroku (le serveur de l'api fait sert aussi les fichiers d'angular)
+ - Tout est combiné en une seule application heroku (le serveur de l'api fait sert aussi les fichiers d'angular), et de cette manière un seul repository contenant les deux projets est suffisant
 
   
   
