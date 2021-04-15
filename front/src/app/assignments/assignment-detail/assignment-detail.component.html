@@ -57,7 +57,7 @@
                               
                               <div class="form-group">
                                   <div class="col-sm-offset-2 col-sm-10">
-                                    <button [disabled]="!isAdmin()" *ngIf="user && user.roles[0]=='ROLE_ADMIN'" mat-stroked-button color="primary" (click)="onClickEdit()">EDIT</button>
+                                    <button *ngIf="user && user.roles[0]=='ROLE_ADMIN'" mat-stroked-button color="primary" (click)="onClickEdit()">EDIT</button>
                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                     <button mat-stroked-button color="warn" *ngIf="user && user.roles[0]=='ROLE_ADMIN'" (click)="onDelete()">DELETE</button>
                                   </div>

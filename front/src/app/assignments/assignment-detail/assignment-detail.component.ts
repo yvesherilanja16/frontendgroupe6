@@ -25,13 +25,18 @@ export class AssignmentDetailComponent implements OnInit {
     private authenticationService: AuthenticationService
   
   ) {
-    this.authenticationService.user.subscribe(x => this.user = x);
+    this.authenticationService.user.subscribe(x => {
+      this.user = x; 
+      console.log("User subscribe done");
+    });
   
   }
 
   ngOnInit(): void {
     this.getAssignmentById();
     this.user = this.authenticationService.userValue;
+    console.log("user value");
+    console.log(this.user);
   }
 
   getAssignmentById() {

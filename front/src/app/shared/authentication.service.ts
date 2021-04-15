@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { User } from '../_models/user';
+import { ThisReceiver } from '@angular/compiler';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -22,6 +23,12 @@ export class AuthenticationService {
 
     public get userValue(): User {
         return this.userSubject.value;
+    }
+
+    isAdmin(){
+        return this.user.pipe(
+            map(x => x!=null && x.roles[0] == "ROLE_ADMIN")
+        );
     }
 
     login(username: string, password: string) {

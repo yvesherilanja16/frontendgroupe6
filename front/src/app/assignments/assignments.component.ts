@@ -41,6 +41,8 @@ export class AssignmentsComponent implements OnInit {
 
   miseajour:boolean = false;
 
+  isAdmin:boolean = false;
+
   // on injecte le service de gestion des assignments
   constructor(private assignmentsService:AssignmentsService,
               private route:ActivatedRoute,
@@ -63,6 +65,7 @@ export class AssignmentsComponent implements OnInit {
       this.getAssignmentsNonRendus();
     });
       console.log("getAssignments() du service appelé");
+      this.authenticationService.isAdmin().subscribe(x => this.isAdmin = x);
   }
 
   onScroll1(event){
